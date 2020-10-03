@@ -37,7 +37,9 @@ public class PastSelvesManager : MonoBehaviour
    public Transform backRightWheel;
    public Transform backLeftWheel;
 
-   public List<PastSelfRecording> pastSelves = new List<PastSelfRecording>();
+   public List<PastSelfRecording> pastSelvesLap1 = new List<PastSelfRecording>();
+   public List<PastSelfRecording> pastSelvesLap2 = new List<PastSelfRecording>();
+   public List<PastSelfRecording> pastSelvesLap3 = new List<PastSelfRecording>();
    private PastSelfRecording lastPastSelfRecording;
 
    private void Awake()
@@ -79,13 +81,13 @@ public class PastSelvesManager : MonoBehaviour
          if (pSForward)
          {
             pSForward.isMovingForwardInTime = true;
-            pSForward.forwardRecordings = new List<PastSelfRecording>(pastSelves);
+            pSForward.forwardRecordings = new List<PastSelfRecording>(pastSelvesLap1);
          }
 
          if (pSBackward)
          {
             pSBackward.isMovingForwardInTime = false;
-            pSBackward.forwardRecordings = new List<PastSelfRecording>(pastSelves);
+            pSBackward.forwardRecordings = new List<PastSelfRecording>(pastSelvesLap1);
          }
          
       }
@@ -99,7 +101,7 @@ public class PastSelvesManager : MonoBehaviour
          {
             var newPastSelf = new PastSelfRecording(thePlayer.position, thePlayer.rotation,
                frontRightWheel.rotation, frontLeftWheel.rotation, backRightWheel.rotation, backLeftWheel.rotation);
-            pastSelves.Add(newPastSelf);
+            pastSelvesLap1.Add(newPastSelf);
 
             lastPastSelfRecording = newPastSelf;
          }
