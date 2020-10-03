@@ -25,9 +25,9 @@ public struct PastSelfRecording
 
 public class PastSelvesManager : MonoBehaviour
 {
+   public static PastSelvesManager instance;
    public Transform SpawnPoint;
-   public GameObject pastSelfCarForward;
-   //public GameObject pastSelfCarBackward;
+   public GameObject pastSelfCar;
 
    public bool isRecording;
    public bool canSpawn = false;
@@ -39,6 +39,11 @@ public class PastSelvesManager : MonoBehaviour
 
    public List<PastSelfRecording> pastSelves = new List<PastSelfRecording>();
    private PastSelfRecording lastPastSelfRecording;
+
+   private void Awake()
+   {
+      instance = this;
+   }
 
    // Start is called before the first frame update
    void Start()
@@ -66,9 +71,23 @@ public class PastSelvesManager : MonoBehaviour
       if (canSpawn)
       {
          canSpawn = false;
-         var forwardCar = Instantiate(pastSelfCarForward, SpawnPoint.position, Quaternion.identity);
-         //var backwardCar = Instantiate(pastSelfCarBackward, SpawnPoint.position, Quaternion.identity);
-         forwardCar.GetComponent<PastSelfForward>().forwardRecordings = new List<PastSelfRecording>(pastSelves);
+         var forwardCar = Instantiate(pastSelfCar, SpawnPoint.position, Quaternion.identity);
+         var backwardCar = Instantiate(pastSelfCar, SpawnPoint.position, Quaternion.identity);
+         PastSelfForward pSForward = forwardCar.GetComponent<PastSelfForward>();
+         PastSelfForward pSBackward = backwardCar.GetComponent<PastSelfForward>();
+
+         if (pSForward)
+         {
+            pSForward.isMovingForwardInTime = true;
+            pSForward.forwardRecordings = new List<PastSelfRecording>(pastSelves);
+         }
+
+         if (pSBackward)
+         {
+            pSBackward.isMovingForwardInTime = false;
+            pSBackward.forwardRecordings = new List<PastSelfRecording>(pastSelves);
+         }
+         
       }
    }
 }
