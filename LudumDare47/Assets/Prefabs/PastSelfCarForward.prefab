@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 136765823210710022}
   - component: {fileID: 136765823210710017}
   - component: {fileID: 136765823210710016}
-  - component: {fileID: 136765823210710019}
   m_Layer: 0
   m_Name: CarBody
   m_TagString: Untagged
@@ -93,27 +92,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 136765823210710525}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.1479678, y: 0.8109305, z: 1.2130594}
   m_Center: {x: 0.008220404, y: 0.0041102767, z: -0.032838978}
---- !u!54 &136765823210710019
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 136765823210710525}
-  serializedVersion: 2
-  m_Mass: 1000
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &136765824126592144
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,8 +140,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 136765824204297882}
+  - component: {fileID: 6320126171144683802}
   m_Layer: 0
-  m_Name: PastSelfCar
+  m_Name: PastSelfCarForward
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,6 +164,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6320126171144683802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136765824204297876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c2bdc26e8c8078428051205b74bdae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlaying: 0
+  frontRightWheel: {fileID: 463689031319676204}
+  frontLeftWheel: {fileID: 463689031305650237}
+  backRightWheel: {fileID: 463689031643054699}
+  backLeftWheel: {fileID: 463689032643880715}
 --- !u!1 &136765824285361322
 GameObject:
   m_ObjectHideFlags: 0

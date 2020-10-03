@@ -2,28 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct PastSelf
+public struct PastSelfRecording
 {
-   public Vector3 transform;
-   public Quaternion rotation;
+   public Vector3 carBodyTransform;
+   public Quaternion carBodyRotation;
+   public Quaternion frontRightWheelRot;
+   public Quaternion frontLeftWheelRot;
+   public Quaternion backRightWheelRot;
+   public Quaternion backLeftWheelRot;
 
-   public PastSelf(Vector3 carTransform, Quaternion carRotation)
+   public PastSelfRecording(Vector3 carTransform, Quaternion carRotation, 
+      Quaternion fRWheelRot, Quaternion fLWheelRot, Quaternion bRWheelRot, Quaternion bLWheelRot)
    {
-      this.transform = carTransform;
-      this.rotation = carRotation;
+      this.carBodyTransform = carTransform;
+      this.carBodyRotation = carRotation;
+      this.frontRightWheelRot = fRWheelRot;
+      this.frontLeftWheelRot = fLWheelRot;
+      this.backRightWheelRot = bRWheelRot;
+      this.backLeftWheelRot = bLWheelRot;
    }
 }
 
 public class PastSelvesManager : MonoBehaviour
 {
    public Transform SpawnPoint;
-   public GameObject pastSelfCar;
+   public GameObject pastSelfCarForward;
+   //public GameObject pastSelfCarBackward;
 
    public bool isRecording;
-   public bool canSpawn;
+   public bool canSpawn = false;
    public Transform thePlayer;
-   public List<PastSelf> pastSelves;
-   private PastSelf lastPastSelfRecording;
+   public Transform frontRightWheel;
+   public Transform frontLeftWheel;
+   public Transform backRightWheel;
+   public Transform backLeftWheel;
+
+   public List<PastSelfRecording> pastSelves = new List<PastSelfRecording>();
+   private PastSelfRecording lastPastSelfRecording;
 
    // Start is called before the first frame update
    void Start()
@@ -36,20 +51,24 @@ public class PastSelvesManager : MonoBehaviour
    {
       if (isRecording)
       {
-         if (thePlayer.position != lastPastSelfRecording.transform || thePlayer.rotation != lastPastSelfRecording.rotation)
+         if (thePlayer.position != lastPastSelfRecording.carBodyTransform || thePlayer.rotation != lastPastSelfRecording.carBodyRotation)
          {
-            var newPastSelf = new PastSelf(thePlayer.position, thePlayer.rotation);
+            var newPastSelf = new PastSelfRecording(thePlayer.position, thePlayer.rotation, 
+               frontRightWheel.rotation, frontLeftWheel.rotation, backRightWheel.rotation, backLeftWheel.rotation);
             pastSelves.Add(newPastSelf);
 
             lastPastSelfRecording = newPastSelf;
          }
       }
 
+
+
       if (canSpawn)
       {
-         Instantiate(pastSelfCar, SpawnPoint.position, Quaternion.identity);
-         Instantiate(pastSelfCar, SpawnPoint.position, Quaternion.identity);
          canSpawn = false;
+         var forwardCar = Instantiate(pastSelfCarForward, SpawnPoint.position, Quaternion.identity);
+         //var backwardCar = Instantiate(pastSelfCarBackward, SpawnPoint.position, Quaternion.identity);
+         forwardCar.GetComponent<PastSelfForward>().forwardRecordings = new List<PastSelfRecording>(pastSelves);
       }
    }
 }
