@@ -6,6 +6,7 @@ public class CarController : MonoBehaviour
 {
    public WheelCollider[] wheelCols;
    public Transform[] wheelMeshes;
+   public BrakeLights brakeLights;
 
    [SerializeField] private float torque = 200f;
    [SerializeField] private float steeringAmount = 30f;
@@ -28,6 +29,17 @@ public class CarController : MonoBehaviour
       acceleration = Input.GetAxis("Vertical");
       steering = Input.GetAxis("Horizontal");
       braking = Input.GetAxis("Jump");
+
+      if (braking > 0)
+      {
+         brakeLights.isBraking = true;
+      }
+
+      if (braking == 0 && brakeLights.isBraking)
+      {
+         brakeLights.isBraking = false;
+      }
+
       Drive(acceleration, steering, braking);
    }
 
