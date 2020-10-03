@@ -9,8 +9,10 @@ public class CarController : MonoBehaviour
 
    [SerializeField] private float torque = 200f;
    [SerializeField] private float steeringAmount = 30f;
+   [SerializeField] private float brakingAmount = 600f;
    private float acceleration;
    private float steering;
+   private float braking;
    private Vector3 wheelPostion;
    private Quaternion wheelRotation;
 
@@ -25,13 +27,15 @@ public class CarController : MonoBehaviour
    {
       acceleration = Input.GetAxis("Vertical");
       steering = Input.GetAxis("Horizontal");
-      Drive(acceleration, steering);
+      braking = Input.GetAxis("Jump");
+      Drive(acceleration, steering, braking);
    }
 
-   void Drive(float accel, float steer)
+   void Drive(float accel, float steer, float brake)
    {
       accel = Mathf.Clamp(accel, -1, 1);
       steer = Mathf.Clamp(steer, -1, 1);
+      brake = Mathf.Clamp(brake, 0, 1);
       //accel = accel * torque;
 
       for (int i = 0; i < wheelCols.Length; i++)
@@ -42,6 +46,8 @@ public class CarController : MonoBehaviour
          {
             wheelCols[i].steerAngle = steer * steeringAmount;
          }
+
+         wheelCols[i].brakeTorque = brake * brakingAmount;
 
 
          wheelCols[i].GetWorldPose(out wheelPostion, out wheelRotation);
