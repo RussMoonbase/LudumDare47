@@ -43,6 +43,10 @@ public class CarController : MonoBehaviour
       Drive(acceleration, steering, braking);
    }
 
+   private void FixedUpdate()
+   {
+      
+   }
    void Drive(float accel, float steer, float brake)
    {
       accel = Mathf.Clamp(accel, -1, 1);

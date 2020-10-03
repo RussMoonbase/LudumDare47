@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
+   public bool lapStarted = false;
 
    private void OnTriggerEnter(Collider other)
    {
@@ -15,11 +16,23 @@ public class Checkpoint : MonoBehaviour
             PastSelvesManager.instance.isRecording = true;
          }
 
-         //if (PastSelvesManager.instance.isRecording)
-         //{
-         //   PastSelvesManager.instance.isRecording = false;
-         //   PastSelvesManager.instance.canSpawn = true;
-         //}
+         if (PastSelvesManager.instance.isRecording && lapStarted)
+         {
+            PastSelvesManager.instance.isRecording = false;
+            PastSelvesManager.instance.canSpawn = true;
+         }
       }
+   }
+
+   private void OnTriggerExit(Collider other)
+   {
+      if (other.tag == "Player")
+      {
+         if (!lapStarted)
+         {
+            lapStarted = true;
+         }
+      }
+      
    }
 }

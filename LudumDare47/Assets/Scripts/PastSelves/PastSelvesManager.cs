@@ -54,17 +54,17 @@ public class PastSelvesManager : MonoBehaviour
    // Update is called once per frame
    void Update()
    {
-      if (isRecording)
-      {
-         if (thePlayer.position != lastPastSelfRecording.carBodyTransform || thePlayer.rotation != lastPastSelfRecording.carBodyRotation)
-         {
-            var newPastSelf = new PastSelfRecording(thePlayer.position, thePlayer.rotation, 
-               frontRightWheel.rotation, frontLeftWheel.rotation, backRightWheel.rotation, backLeftWheel.rotation);
-            pastSelves.Add(newPastSelf);
+      //if (isRecording)
+      //{
+      //   if (thePlayer.position != lastPastSelfRecording.carBodyTransform || thePlayer.rotation != lastPastSelfRecording.carBodyRotation)
+      //   {
+      //      var newPastSelf = new PastSelfRecording(thePlayer.position, thePlayer.rotation, 
+      //         frontRightWheel.rotation, frontLeftWheel.rotation, backRightWheel.rotation, backLeftWheel.rotation);
+      //      pastSelves.Add(newPastSelf);
 
-            lastPastSelfRecording = newPastSelf;
-         }
-      }
+      //      lastPastSelfRecording = newPastSelf;
+      //   }
+      //}
 
 
 
@@ -88,6 +88,21 @@ public class PastSelvesManager : MonoBehaviour
             pSBackward.forwardRecordings = new List<PastSelfRecording>(pastSelves);
          }
          
+      }
+   }
+
+   private void FixedUpdate()
+   {
+      if (isRecording)
+      {
+         if (thePlayer.position != lastPastSelfRecording.carBodyTransform || thePlayer.rotation != lastPastSelfRecording.carBodyRotation)
+         {
+            var newPastSelf = new PastSelfRecording(thePlayer.position, thePlayer.rotation,
+               frontRightWheel.rotation, frontLeftWheel.rotation, backRightWheel.rotation, backLeftWheel.rotation);
+            pastSelves.Add(newPastSelf);
+
+            lastPastSelfRecording = newPastSelf;
+         }
       }
    }
 }
