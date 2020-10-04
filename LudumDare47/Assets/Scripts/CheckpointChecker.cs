@@ -36,6 +36,7 @@ public class CheckpointChecker : MonoBehaviour
             {
                nextCheckpointNum = 0;
                RaceManager.instance.currentLap++;
+               Debug.Log("Current Lap = " + RaceManager.instance.currentLap);
             }
          }
 

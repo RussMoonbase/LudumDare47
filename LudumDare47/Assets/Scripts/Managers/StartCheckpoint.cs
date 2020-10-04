@@ -20,6 +20,7 @@ public class StartCheckpoint : MonoBehaviour
          {
             PastSelvesManager.instance.isRecording = false;
             PastSelvesManager.instance.canSpawn = true;
+            lapStarted = false;
          }
       }
    }

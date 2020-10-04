@@ -81,13 +81,15 @@ public class PastSelvesManager : MonoBehaviour
          if (pSForward)
          {
             pSForward.isMovingForwardInTime = true;
-            pSForward.forwardRecordings = new List<PastSelfRecording>(pastSelvesLap1);
+            //pSForward.forwardRecordings = new List<PastSelfRecording>(pastSelvesLap1);
+            CopyListToSpawnedCar(pSForward);
          }
 
          if (pSBackward)
          {
             pSBackward.isMovingForwardInTime = false;
-            pSBackward.forwardRecordings = new List<PastSelfRecording>(pastSelvesLap1);
+            //pSBackward.forwardRecordings = new List<PastSelfRecording>(pastSelvesLap1);
+            CopyListToSpawnedCar(pSBackward);
          }
          
       }
@@ -101,10 +103,38 @@ public class PastSelvesManager : MonoBehaviour
          {
             var newPastSelf = new PastSelfRecording(thePlayer.position, thePlayer.rotation,
                frontRightWheel.rotation, frontLeftWheel.rotation, backRightWheel.rotation, backLeftWheel.rotation);
-            pastSelvesLap1.Add(newPastSelf);
+
+            if (RaceManager.instance.currentLap == 1)
+            {
+               pastSelvesLap1.Add(newPastSelf);
+            }
+            else if (RaceManager.instance.currentLap == 2)
+            {
+               pastSelvesLap2.Add(newPastSelf);
+            }
+            else if (RaceManager.instance.currentLap == 3)
+            {
+               pastSelvesLap3.Add(newPastSelf);
+            }
 
             lastPastSelfRecording = newPastSelf;
          }
+      }
+   }
+
+   void CopyListToSpawnedCar(PastSelfForward pSelfForward)
+   {
+      if (RaceManager.instance.currentLap == 2)
+      {
+         pSelfForward.forwardRecordings = new List<PastSelfRecording>(pastSelvesLap1);
+      }
+      else if (RaceManager.instance.currentLap == 3)
+      {
+         pSelfForward.forwardRecordings = new List<PastSelfRecording>(pastSelvesLap2);
+      }
+      else if (RaceManager.instance.currentLap == 4)
+      {
+         pSelfForward.forwardRecordings = new List<PastSelfRecording>(pastSelvesLap3);
       }
    }
 }

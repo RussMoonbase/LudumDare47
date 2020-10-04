@@ -27,11 +27,14 @@ public class RaceManager : MonoBehaviour
             checkPoints[i].checkPointNum = i;
          }
       }
+
+      currentLap = 1;
+      Debug.Log("Current Lap = " + currentLap);
    }
 
    // Update is called once per frame
    void Update()
    {
-
+      
    }
 }
