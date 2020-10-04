@@ -10,11 +10,6 @@ public class StartCheckpoint : MonoBehaviour
    {
       if (other.tag == "Player")
       {
-         //Debug.Log("Player hit checkpoint");
-         if (!PastSelvesManager.instance.isRecording)
-         {
-            PastSelvesManager.instance.isRecording = true;
-         }
 
          if (PastSelvesManager.instance.isRecording && lapStarted)
          {
@@ -32,6 +27,12 @@ public class StartCheckpoint : MonoBehaviour
          if (!lapStarted)
          {
             lapStarted = true;
+         }
+
+         //Debug.Log("Player hit checkpoint");
+         if (!PastSelvesManager.instance.isRecording)
+         {
+            PastSelvesManager.instance.isRecording = true;
          }
       }
 
