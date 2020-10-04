@@ -7,10 +7,12 @@ public class CheckpointChecker : MonoBehaviour
    public int currentCheckPoint;
    private int nextCheckpointNum;
 
+   // delete later
+
+
    // Start is called before the first frame update
    void Start()
    {
-
    }
 
    // Update is called once per frame
@@ -41,4 +43,5 @@ public class CheckpointChecker : MonoBehaviour
          //Debug.Log("Current checkpoint = " + currentCheckPoint);
       }
    }
+
 }
