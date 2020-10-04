@@ -15,7 +15,7 @@ public class PastSelfForward : MonoBehaviour
    // Start is called before the first frame update
    void Start()
    {
-      Debug.Log("Forward Recordings Count = " + forwardRecordings.Count);
+      //Debug.Log("Forward Recordings Count = " + forwardRecordings.Count);
       isPlaying = true;
    }
 

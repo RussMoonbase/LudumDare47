@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 136765823210710022}
   - component: {fileID: 136765823210710017}
   - component: {fileID: 136765823210710016}
+  - component: {fileID: 1995187072376952378}
   m_Layer: 0
   m_Name: CarBody
   m_TagString: Untagged
@@ -97,6 +98,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1479678, y: 0.8109305, z: 1.2130594}
   m_Center: {x: 0.008220404, y: 0.0041102767, z: -0.032838978}
+--- !u!114 &1995187072376952378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136765823210710525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b3f9ab72988a6b4eb78cb471fb6b722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forcePower: 50000
+  canHitPlayer: 0
+  waitTime: 2
 --- !u!1 &136765824126592144
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,7 +158,7 @@ GameObject:
   - component: {fileID: 136765824204297882}
   - component: {fileID: 6320126171144683802}
   m_Layer: 0
-  m_Name: PastSelfCarForward
+  m_Name: PastSelfCarLap1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -181,6 +197,7 @@ MonoBehaviour:
   frontLeftWheel: {fileID: 463689031305650237}
   backRightWheel: {fileID: 463689031643054699}
   backLeftWheel: {fileID: 463689032643880715}
+  isMovingForwardInTime: 0
 --- !u!1 &136765824285361322
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,14 +971,14 @@ PrefabInstance:
     - {fileID: -5754084199372789682, guid: c2a7243b700cd674fba91d0d36cc4b88, type: 3}
     - {fileID: -7511558181221131132, guid: c2a7243b700cd674fba91d0d36cc4b88, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c2a7243b700cd674fba91d0d36cc4b88, type: 3}
---- !u!4 &463689031253191270 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c2a7243b700cd674fba91d0d36cc4b88, type: 3}
-  m_PrefabInstance: {fileID: 136765824263916941}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &947033670234353884 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c2a7243b700cd674fba91d0d36cc4b88, type: 3}
+  m_PrefabInstance: {fileID: 136765824263916941}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &463689031253191270 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c2a7243b700cd674fba91d0d36cc4b88, type: 3}
   m_PrefabInstance: {fileID: 136765824263916941}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &136765824526731985
