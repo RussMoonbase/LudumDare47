@@ -27,7 +27,9 @@ public class PastSelvesManager : MonoBehaviour
 {
    public static PastSelvesManager instance;
    public Transform SpawnPoint;
-   public GameObject pastSelfCar;
+   public GameObject pastSelfCarLap1;
+   public GameObject pastSelfCarLap2;
+   public GameObject pastSelfCarLap3;
 
    public bool isRecording;
    public bool canSpawn = false;
@@ -73,10 +75,32 @@ public class PastSelvesManager : MonoBehaviour
       if (canSpawn)
       {
          canSpawn = false;
-         var forwardCar = Instantiate(pastSelfCar, SpawnPoint.position, Quaternion.identity);
-         var backwardCar = Instantiate(pastSelfCar, SpawnPoint.position, Quaternion.identity);
+
+         GameObject spawnCar;
+
+         if (RaceManager.instance.currentLap == 2)
+         {
+            spawnCar = pastSelfCarLap1;
+         }
+         else if (RaceManager.instance.currentLap == 3)
+         {
+            spawnCar = pastSelfCarLap2;
+         }
+         else if (RaceManager.instance.currentLap == 4)
+         {
+            spawnCar = pastSelfCarLap3;
+         }
+         else
+         {
+            spawnCar = pastSelfCarLap1;
+         }
+
+
+         var forwardCar = Instantiate(spawnCar, SpawnPoint.position, Quaternion.identity);
+         var backwardCar = Instantiate(spawnCar, SpawnPoint.position, Quaternion.identity);
          PastSelfForward pSForward = forwardCar.GetComponent<PastSelfForward>();
          PastSelfForward pSBackward = backwardCar.GetComponent<PastSelfForward>();
+
 
          if (pSForward)
          {
