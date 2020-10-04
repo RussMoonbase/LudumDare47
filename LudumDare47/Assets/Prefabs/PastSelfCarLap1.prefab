@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b3f9ab72988a6b4eb78cb471fb6b722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forcePower: 50000
+  forcePower: 1000
   canHitPlayer: 0
   waitTime: 2
 --- !u!1 &136765824126592144

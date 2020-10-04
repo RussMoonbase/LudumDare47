@@ -71,51 +71,52 @@ public class PastSelvesManager : MonoBehaviour
       //}
 
 
-
-      if (canSpawn)
+      if (RaceManager.instance.currentLap <= RaceManager.instance.maxLaps)
       {
-         canSpawn = false;
-
-         GameObject spawnCar;
-
-         if (RaceManager.instance.currentLap == 2)
+         if (canSpawn)
          {
-            spawnCar = pastSelfCarLap1;
-         }
-         else if (RaceManager.instance.currentLap == 3)
-         {
-            spawnCar = pastSelfCarLap2;
-         }
-         else if (RaceManager.instance.currentLap == 4)
-         {
-            spawnCar = pastSelfCarLap3;
-         }
-         else
-         {
-            spawnCar = pastSelfCarLap1;
-         }
+            canSpawn = false;
+
+            GameObject spawnCar;
+
+            if (RaceManager.instance.currentLap == 2)
+            {
+               spawnCar = pastSelfCarLap1;
+            }
+            else if (RaceManager.instance.currentLap == 3)
+            {
+               spawnCar = pastSelfCarLap2;
+            }
+            else if (RaceManager.instance.currentLap == 4)
+            {
+               spawnCar = pastSelfCarLap3;
+            }
+            else
+            {
+               spawnCar = pastSelfCarLap1;
+            }
 
 
-         var forwardCar = Instantiate(spawnCar, SpawnPoint.position, Quaternion.identity);
-         var backwardCar = Instantiate(spawnCar, SpawnPoint.position, Quaternion.identity);
-         PastSelfForward pSForward = forwardCar.GetComponent<PastSelfForward>();
-         PastSelfForward pSBackward = backwardCar.GetComponent<PastSelfForward>();
+            var forwardCar = Instantiate(spawnCar, SpawnPoint.position, Quaternion.identity);
+            var backwardCar = Instantiate(spawnCar, SpawnPoint.position, Quaternion.identity);
+            PastSelfForward pSForward = forwardCar.GetComponent<PastSelfForward>();
+            PastSelfForward pSBackward = backwardCar.GetComponent<PastSelfForward>();
 
 
-         if (pSForward)
-         {
-            pSForward.isMovingForwardInTime = true;
-            //pSForward.forwardRecordings = new List<PastSelfRecording>(pastSelvesLap1);
-            CopyListToSpawnedCar(pSForward);
-         }
+            if (pSForward)
+            {
+               pSForward.isMovingForwardInTime = true;
+               //pSForward.forwardRecordings = new List<PastSelfRecording>(pastSelvesLap1);
+               CopyListToSpawnedCar(pSForward);
+            }
 
-         if (pSBackward)
-         {
-            pSBackward.isMovingForwardInTime = false;
-            //pSBackward.forwardRecordings = new List<PastSelfRecording>(pastSelvesLap1);
-            CopyListToSpawnedCar(pSBackward);
-         }
-         
+            if (pSBackward)
+            {
+               pSBackward.isMovingForwardInTime = false;
+               //pSBackward.forwardRecordings = new List<PastSelfRecording>(pastSelvesLap1);
+               CopyListToSpawnedCar(pSBackward);
+            }
+         }        
       }
    }
 
