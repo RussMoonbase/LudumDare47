@@ -6,6 +6,7 @@ public class PlayerCarSoundManager : MonoBehaviour
 {
    public AudioSource engineSFX;
    public WheelCollider wheelCol;
+   public AudioSource hitFX;
 
    private Rigidbody rBody;
    public float pitch = 0f;
@@ -30,5 +31,13 @@ public class PlayerCarSoundManager : MonoBehaviour
          engineSFX.pitch = ((currentSpeed) / CarController.instance.torque) * 2f;
       }
       
+   }
+
+   private void OnCollisionEnter(Collision collision)
+   {
+      hitFX.Stop();
+      float randomNum = Random.Range(0.6f, 1.4f);
+      hitFX.pitch = randomNum;
+      hitFX.Play();
    }
 }
