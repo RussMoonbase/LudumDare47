@@ -29,7 +29,9 @@ public class RaceManager : MonoBehaviour
       }
 
       currentLap = 1;
-      Debug.Log("Current Lap = " + currentLap);
+      UIManager.instance.currentLapText.text = currentLap.ToString();
+      UIManager.instance.maxLapsText.text = maxLaps.ToString();
+      //Debug.Log("Current Lap = " + currentLap);
    }
 
    // Update is called once per frame
