@@ -10,9 +10,23 @@ public class RaceManager : MonoBehaviour
    public int currentLap;
    public int maxLaps;
 
+   public enum PlayerPrefParameters
+   {
+      BestTime
+   }
+
+   public float initialStartTime = 240;
+   //public bool isTimerRunning;
+   private float countdownTimer;
+   private float stopwatchTimer;
+   private float minutes;
+   private float seconds;
+   private float milliseconds;
+
    private void Awake()
    {
       instance = this;
+      PlayerPrefs.SetFloat(PlayerPrefParameters.BestTime.ToString(), initialStartTime);
    }
 
    // Start is called before the first frame update
@@ -28,6 +42,9 @@ public class RaceManager : MonoBehaviour
          }
       }
 
+      countdownTimer = PlayerPrefs.GetFloat(PlayerPrefParameters.BestTime.ToString());
+      stopwatchTimer = 0;
+
       currentLap = 1;
       UIManager.instance.currentLapText.text = currentLap.ToString();
       UIManager.instance.maxLapsText.text = maxLaps.ToString();
@@ -37,6 +54,19 @@ public class RaceManager : MonoBehaviour
    // Update is called once per frame
    void Update()
    {
-      
+      if (currentLap <= maxLaps)
+      {
+         countdownTimer -= Time.deltaTime;
+         stopwatchTimer += Time.deltaTime;
+         DisplayCountdownTime(countdownTimer);
+      }
+   }
+
+   void DisplayCountdownTime(float theTime)
+   {
+      minutes = Mathf.FloorToInt(theTime / 60);
+      seconds = Mathf.FloorToInt(theTime % 60);
+      milliseconds = (theTime % 1) * 1000;
+      UIManager.instance.countdownTimerText.text = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
    }
 }

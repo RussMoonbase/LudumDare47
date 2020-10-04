@@ -32,7 +32,8 @@ public class DestroyPlayerCar : MonoBehaviour
             if (rBody)
             {
                Debug.Log("RigidBody Found");
-               rBody.AddForce(other.transform.up * forcePower, ForceMode.Impulse);
+               rBody.AddForce((other.transform.up) * forcePower, ForceMode.Impulse);
+               rBody.AddForce((other.transform.right) * 30000f, ForceMode.Impulse);
             }
          }
 

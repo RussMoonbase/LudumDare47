@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
+   public static CarController instance;
    public WheelCollider[] wheelCols;
    public Transform[] wheelMeshes;
    public BrakeLights brakeLights;
 
-   [SerializeField] private float torque = 200f;
+   public float torque = 200f;
    [SerializeField] private float steeringAmount = 30f;
    [SerializeField] private float brakingAmount = 600f;
    private float acceleration;
@@ -16,6 +17,11 @@ public class CarController : MonoBehaviour
    private float braking;
    private Vector3 wheelPostion;
    private Quaternion wheelRotation;
+
+   private void Awake()
+   {
+      instance = this;
+   }
 
    // Start is called before the first frame update
    void Start()
@@ -47,6 +53,7 @@ public class CarController : MonoBehaviour
    {
       
    }
+
    void Drive(float accel, float steer, float brake)
    {
       accel = Mathf.Clamp(accel, -1, 1);
@@ -71,5 +78,11 @@ public class CarController : MonoBehaviour
          wheelMeshes[i].transform.localRotation = wheelRotation;
 
       }
+   }
+
+   public float GetMotorTorque()
+   {
+      float currentTorque = wheelCols[0].motorTorque;
+      return currentTorque;
    }
 }
