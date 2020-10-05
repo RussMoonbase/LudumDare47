@@ -7,6 +7,7 @@ public class PlayerCarSoundManager : MonoBehaviour
    public AudioSource engineSFX;
    public WheelCollider wheelCol;
    public AudioSource hitFX;
+   public AudioClip[] hitClips;
 
    private Rigidbody rBody;
    public float pitch = 0f;
@@ -15,6 +16,7 @@ public class PlayerCarSoundManager : MonoBehaviour
    void Start()
    {
       rBody = GetComponent<Rigidbody>();
+      hitFX.clip = hitClips[0];
    }
 
    // Update is called once per frame
@@ -35,9 +37,26 @@ public class PlayerCarSoundManager : MonoBehaviour
 
    private void OnCollisionEnter(Collision collision)
    {
+      PlayHitEffect();
+   }
+
+   private void PlayHitEffect()
+   {
       hitFX.Stop();
       float randomNum = Random.Range(0.6f, 1.4f);
       hitFX.pitch = randomNum;
       hitFX.Play();
+   }
+
+   public void PlayPastSelfHitEffect()
+   {
+
+      hitFX.clip = hitClips[1];
+      PlayHitEffect();
+   }
+
+   public void ResetToOrigialHitEffect()
+   {
+      hitFX.clip = hitClips[0];
    }
 }

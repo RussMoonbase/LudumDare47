@@ -22,6 +22,13 @@ public class CarController : MonoBehaviour
 
    public bool wasHit = false;
    public GameObject destructibleBody;
+   public PlayerCarSoundManager carSoundManager;
+
+   private float originalFrontWheelFriction;
+   private float originalBackWheelFriction;
+
+   [SerializeField] private float driftFrontWheelFriction;
+   [SerializeField] private float driftBackWheelFriction;
 
    private void Awake()
    {
@@ -31,7 +38,8 @@ public class CarController : MonoBehaviour
    // Start is called before the first frame update
    void Start()
    {
-
+      originalFrontWheelFriction = wheelCols[0].forwardFriction.stiffness;
+      originalBackWheelFriction = wheelCols[2].forwardFriction.stiffness;
    }
 
    // Update is called once per frame
@@ -44,6 +52,11 @@ public class CarController : MonoBehaviour
       if (braking > 0)
       {
          brakeLights.isBraking = true;
+
+         if (steering != 0)
+         {
+            //for (int i = )
+         }
       }
 
       if (braking == 0 && brakeLights.isBraking)
@@ -87,9 +100,6 @@ public class CarController : MonoBehaviour
             wheelCols[i].brakeTorque = brake * brakingAmount;
          }
 
-         
-
-
          wheelCols[i].GetWorldPose(out wheelPostion, out wheelRotation);
          wheelMeshes[i].transform.position = wheelPostion;
          wheelMeshes[i].transform.localRotation = wheelRotation;
@@ -102,12 +112,14 @@ public class CarController : MonoBehaviour
       carBodyRigidbody.isKinematic = true;
       carBodyRigidbody.detectCollisions = false;
       carBodyModel.SetActive(false);
+      carSoundManager.PlayPastSelfHitEffect();
       destructibleBody.SetActive(true);
       StartCoroutine(BeginRestartRoutine());
    }
 
    private void ResetCar()
    {
+      carSoundManager.ResetToOrigialHitEffect();
       carBodyRigidbody.isKinematic = false;
       carBodyRigidbody.detectCollisions = true;
       destructibleBody.SetActive(false);

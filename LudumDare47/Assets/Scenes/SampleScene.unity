@@ -4029,6 +4029,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1429150959, guid: 865156d5d020ace49b7e79ea1a5cabf5, type: 3}
+      propertyPath: m_Name
+      value: HitFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 1598643648, guid: 865156d5d020ace49b7e79ea1a5cabf5, type: 3}
+      propertyPath: hitClips.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1598643648, guid: 865156d5d020ace49b7e79ea1a5cabf5, type: 3}
+      propertyPath: hitClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6de0c2d6a7804447391cb0194f2c3c9d, type: 3}
+    - target: {fileID: 1598643648, guid: 865156d5d020ace49b7e79ea1a5cabf5, type: 3}
+      propertyPath: hitClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: d4e0126217c404002b6cdb6d7191d28b, type: 3}
     - target: {fileID: 6018559837794230224, guid: 865156d5d020ace49b7e79ea1a5cabf5, type: 3}
       propertyPath: carBodyRigidbody
       value: 
@@ -4045,6 +4061,10 @@ PrefabInstance:
       propertyPath: carBodyModel
       value: 
       objectReference: {fileID: 353734926}
+    - target: {fileID: 6018559837794230224, guid: 865156d5d020ace49b7e79ea1a5cabf5, type: 3}
+      propertyPath: carSoundManager
+      value: 
+      objectReference: {fileID: 1598643648}
     - target: {fileID: 6018559837794230225, guid: 865156d5d020ace49b7e79ea1a5cabf5, type: 3}
       propertyPath: m_Name
       value: PlayerCar
@@ -4479,7 +4499,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.033661358, y: 0.000000017241183, z: -5.806908e-10, w: 0.99943334}
+  m_LocalRotation: {x: 0.033661373, y: -0.000000017107697, z: 5.761952e-10, w: 0.99943334}
   m_LocalPosition: {x: 0, y: 1.9300001, z: -5.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -5270,7 +5290,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1077136271}
-  m_LocalRotation: {x: 0.033661358, y: 0.000000017241183, z: -5.806908e-10, w: 0.99943334}
+  m_LocalRotation: {x: 0.033661373, y: -0.000000017107697, z: 5.761952e-10, w: 0.99943334}
   m_LocalPosition: {x: 0, y: 1.9300001, z: -5.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7212,6 +7232,17 @@ Rigidbody:
   m_CorrespondingSourceObject: {fileID: 6018559836664851782, guid: 865156d5d020ace49b7e79ea1a5cabf5, type: 3}
   m_PrefabInstance: {fileID: 850766035}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1598643648 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1598643648, guid: 865156d5d020ace49b7e79ea1a5cabf5, type: 3}
+  m_PrefabInstance: {fileID: 850766035}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598643641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ada4faebd77fd4c43835279bd3351cf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1603126483
 PrefabInstance:
   m_ObjectHideFlags: 0
