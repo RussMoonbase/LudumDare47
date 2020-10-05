@@ -49,8 +49,8 @@ public class CheckpointChecker : MonoBehaviour
       if (other.tag == "Checkpoint")
       {
          currentCheckPoint = other.GetComponent<Checkpoint>().checkPointNum;
-         Debug.Log("Current checkpoint = " + currentCheckPoint);
-         Debug.Log("nextCheckpointNum checkpoint num = " + RaceManager.instance.nextCheckpointNumber);
+         //Debug.Log("Current checkpoint = " + currentCheckPoint);
+         //Debug.Log("nextCheckpointNum checkpoint num = " + RaceManager.instance.nextCheckpointNumber);
 
          if (currentCheckPoint == RaceManager.instance.nextCheckpointNumber)
          {
