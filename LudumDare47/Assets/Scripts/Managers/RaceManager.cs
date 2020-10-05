@@ -10,6 +10,7 @@ public class RaceManager : MonoBehaviour
    public int totalcheckPoints;
    public int currentLap;
    public int maxLaps;
+   public int nextCheckpointNumber;
 
    public PlayableDirector startTimeline;
    public PlayableDirector finishTimeline;
