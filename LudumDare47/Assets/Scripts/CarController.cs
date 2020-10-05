@@ -38,8 +38,8 @@ public class CarController : MonoBehaviour
    // Start is called before the first frame update
    void Start()
    {
-      originalFrontWheelFriction = wheelCols[0].forwardFriction.stiffness;
-      originalBackWheelFriction = wheelCols[2].forwardFriction.stiffness;
+      originalFrontWheelFriction = wheelCols[0].sidewaysFriction.stiffness;
+      originalBackWheelFriction = wheelCols[2].sidewaysFriction.stiffness;
    }
 
    // Update is called once per frame
@@ -48,15 +48,11 @@ public class CarController : MonoBehaviour
       acceleration = Input.GetAxis("Vertical");
       steering = Input.GetAxis("Horizontal");
       braking = Input.GetAxis("Jump");
+      float handBrake = Input.GetAxis("Fire2");
 
       if (braking > 0)
       {
          brakeLights.isBraking = true;
-
-         if (steering != 0)
-         {
-            //for (int i = )
-         }
       }
 
       if (braking == 0 && brakeLights.isBraking)
@@ -89,17 +85,28 @@ public class CarController : MonoBehaviour
       for (int i = 0; i < wheelCols.Length; i++)
       {
          wheelCols[i].motorTorque = accel * torque;
+         WheelFrictionCurve newWheelFriction = wheelCols[i].sidewaysFriction;
 
          if (i < 2)
          {
             wheelCols[i].steerAngle = steer * steeringAmount;
+            if (brake > 0)
+            {
+               newWheelFriction.stiffness = driftFrontWheelFriction; 
+            }
          }
 
          if ( i > 1)
          {
             wheelCols[i].brakeTorque = brake * brakingAmount;
+
+            if (brake > 0)
+            {
+               newWheelFriction.stiffness = driftBackWheelFriction;
+            }
          }
 
+         wheelCols[i].sidewaysFriction = newWheelFriction;
          wheelCols[i].GetWorldPose(out wheelPostion, out wheelRotation);
          wheelMeshes[i].transform.position = wheelPostion;
          wheelMeshes[i].transform.localRotation = wheelRotation;
