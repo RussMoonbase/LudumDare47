@@ -71,8 +71,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1899991327683346090}
   - component: {fileID: 8713435770015262270}
-  - component: {fileID: 618553501178342077}
-  - component: {fileID: 824841150442016641}
   m_Layer: 0
   m_Name: PastSelfCarLap3
   m_TagString: Untagged
@@ -114,36 +112,6 @@ MonoBehaviour:
   backRightWheel: {fileID: 6074491694126490081}
   backLeftWheel: {fileID: 1223202621476743098}
   isMovingForwardInTime: 0
---- !u!114 &618553501178342077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 294920186205536198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b3f9ab72988a6b4eb78cb471fb6b722, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  forcePower: 500
-  canHitPlayer: 0
-  waitTime: 0
---- !u!114 &824841150442016641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 294920186205536198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b3f9ab72988a6b4eb78cb471fb6b722, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  forcePower: 0
-  canHitPlayer: 0
-  waitTime: 2
 --- !u!1 &2180206377416157646
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,6 +267,7 @@ GameObject:
   - component: {fileID: 3368957267373793011}
   - component: {fileID: 7928804212249091808}
   - component: {fileID: 996883239352311241}
+  - component: {fileID: 2504388700330382078}
   m_Layer: 0
   m_Name: CarBody
   m_TagString: Untagged
@@ -384,6 +353,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1479678, y: 0.8109305, z: 1.2130594}
   m_Center: {x: 0.008220404, y: 0.0041102767, z: -0.032838978}
+--- !u!114 &2504388700330382078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3441903311715513775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b3f9ab72988a6b4eb78cb471fb6b722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forcePower: 0
+  canHitPlayer: 0
+  waitTime: 2
 --- !u!1 &4062378920887706038
 GameObject:
   m_ObjectHideFlags: 0

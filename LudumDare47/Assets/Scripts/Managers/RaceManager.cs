@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class RaceManager : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class RaceManager : MonoBehaviour
    public int totalcheckPoints;
    public int currentLap;
    public int maxLaps;
+
+   public PlayableDirector startTimeline;
+   public PlayableDirector finishTimeline;
 
    public enum PlayerPrefParameters
    {
@@ -32,6 +36,7 @@ public class RaceManager : MonoBehaviour
    // Start is called before the first frame update
    void Start()
    {
+      finishTimeline.Stop();
       totalcheckPoints = checkPoints.Length;
 
       if (checkPoints.Length != 0)
@@ -59,6 +64,11 @@ public class RaceManager : MonoBehaviour
          countdownTimer -= Time.deltaTime;
          stopwatchTimer += Time.deltaTime;
          DisplayCountdownTime(countdownTimer);
+      }
+
+      if (currentLap > maxLaps)
+      {
+         finishTimeline.Play();
       }
    }
 
