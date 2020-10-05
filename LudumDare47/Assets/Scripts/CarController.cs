@@ -17,6 +17,7 @@ public class CarController : MonoBehaviour
    private float acceleration;
    private float steering;
    private float braking;
+   private float drifting;
    private Vector3 wheelPostion;
    private Quaternion wheelRotation;
 
@@ -24,8 +25,8 @@ public class CarController : MonoBehaviour
    public GameObject destructibleBody;
    public PlayerCarSoundManager carSoundManager;
 
-   private float originalFrontWheelFriction;
-   private float originalBackWheelFriction;
+   [SerializeField] private float originalFrontWheelFriction;
+   [SerializeField] private float originalBackWheelFriction;
 
    [SerializeField] private float driftFrontWheelFriction;
    [SerializeField] private float driftBackWheelFriction;
@@ -48,7 +49,7 @@ public class CarController : MonoBehaviour
       acceleration = Input.GetAxis("Vertical");
       steering = Input.GetAxis("Horizontal");
       braking = Input.GetAxis("Jump");
-      float handBrake = Input.GetAxis("Fire2");
+      drifting = Input.GetAxis("Fire2");
 
       if (braking > 0)
       {
@@ -60,7 +61,7 @@ public class CarController : MonoBehaviour
          brakeLights.isBraking = false;
       }
 
-      Drive(acceleration, steering, braking);
+      Drive(acceleration, steering, braking, drifting);
 
       if (wasHit)
       {
@@ -75,7 +76,7 @@ public class CarController : MonoBehaviour
       
    }
 
-   void Drive(float accel, float steer, float brake)
+   void Drive(float accel, float steer, float brake, float drift)
    {
       accel = Mathf.Clamp(accel, -1, 1);
       steer = Mathf.Clamp(steer, -1, 1);
@@ -90,9 +91,13 @@ public class CarController : MonoBehaviour
          if (i < 2)
          {
             wheelCols[i].steerAngle = steer * steeringAmount;
-            if (brake > 0)
+            if (drift > 0)
             {
                newWheelFriction.stiffness = driftFrontWheelFriction; 
+            }
+            else
+            {
+               newWheelFriction.stiffness = originalFrontWheelFriction;
             }
          }
 
@@ -100,9 +105,13 @@ public class CarController : MonoBehaviour
          {
             wheelCols[i].brakeTorque = brake * brakingAmount;
 
-            if (brake > 0)
+            if (drift > 0)
             {
                newWheelFriction.stiffness = driftBackWheelFriction;
+            }
+            else
+            {
+               newWheelFriction.stiffness = originalBackWheelFriction;
             }
          }
 
