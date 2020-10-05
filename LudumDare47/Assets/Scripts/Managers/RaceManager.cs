@@ -15,6 +15,8 @@ public class RaceManager : MonoBehaviour
    public PlayableDirector startTimeline;
    public PlayableDirector finishTimeline;
 
+   private float raceTime;
+
    public enum PlayerPrefParameters
    {
       BestTime
@@ -31,7 +33,18 @@ public class RaceManager : MonoBehaviour
    private void Awake()
    {
       instance = this;
-      PlayerPrefs.SetFloat(PlayerPrefParameters.BestTime.ToString(), initialStartTime);
+      float bestTime = PlayerPrefs.GetFloat(PlayerPrefParameters.BestTime.ToString());
+      if (bestTime >= 60)
+      {
+         //PlayerPrefs.SetFloat(PlayerPrefParameters.RaceTime.ToString(), bestTime);
+         raceTime = bestTime;
+      }
+      else
+      {
+         raceTime = initialStartTime;
+         //PlayerPrefs.SetFloat(PlayerPrefParameters.RaceTime.ToString(), initialStartTime);
+      }
+      //PlayerPrefs.SetFloat(PlayerPrefParameters.BestTime.ToString(), initialStartTime);
    }
 
    // Start is called before the first frame update
@@ -48,7 +61,8 @@ public class RaceManager : MonoBehaviour
          }
       }
 
-      countdownTimer = PlayerPrefs.GetFloat(PlayerPrefParameters.BestTime.ToString());
+      countdownTimer = raceTime;
+      //countdownTimer = PlayerPrefs.GetFloat(PlayerPrefParameters.RaceTime.ToString());
       stopwatchTimer = 0;
 
       currentLap = 1;
@@ -73,6 +87,8 @@ public class RaceManager : MonoBehaviour
 
          if (countdownTimer <= 0)
          {
+            countdownTimer = 0;
+            SetCountDownTimeDisplay(countdownTimer);
             StartCoroutine(WaitToLoadLoseScene());
          }
       }
@@ -80,6 +96,7 @@ public class RaceManager : MonoBehaviour
       if (currentLap > maxLaps)
       {
          finishTimeline.Play();
+         PlayerPrefs.SetFloat(PlayerPrefParameters.BestTime.ToString(), stopwatchTimer);
          StartCoroutine(WaitToLoadWinScene());
       }
    }
