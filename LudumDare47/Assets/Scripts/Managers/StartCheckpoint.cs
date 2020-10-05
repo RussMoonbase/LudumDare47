@@ -5,17 +5,26 @@ using UnityEngine;
 public class StartCheckpoint : MonoBehaviour
 {
    public bool lapStarted = false;
+   public int thisCheckPointNumber;
+
+   private void Start()
+   {
+
+   }
 
    private void OnTriggerEnter(Collider other)
    {
       if (other.tag == "Player")
       {
-
          if (PastSelvesManager.instance.isRecording && lapStarted)
          {
-            PastSelvesManager.instance.isRecording = false;
-            PastSelvesManager.instance.canSpawn = true;
-            lapStarted = false;
+            if (thisCheckPointNumber == RaceManager.instance.nextCheckpointNumber)
+            {
+               PastSelvesManager.instance.isRecording = false;
+               PastSelvesManager.instance.canSpawn = true;
+               lapStarted = false;
+            }
+            
          }
       }
    }

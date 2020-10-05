@@ -23,32 +23,53 @@ public class CheckpointChecker : MonoBehaviour
 
    private void OnTriggerEnter(Collider other)
    {
+      //if (other.tag == "Checkpoint")
+      //{
+      //   currentCheckPoint = other.GetComponent<Checkpoint>().checkPointNum;
+      //   //Debug.Log("Current checkpoint = " + currentCheckPoint);
+      //   Debug.Log("nextCheckpointNum checkpoint num = " + nextCheckpointNum);
+
+      //   if (currentCheckPoint == nextCheckpointNum)
+      //   {
+      //      nextCheckpointNum++;
+
+      //      if (nextCheckpointNum == RaceManager.instance.totalcheckPoints)
+      //      {
+      //         nextCheckpointNum = 0;
+      //         RaceManager.instance.currentLap++;
+
+      //         if (RaceManager.instance.currentLap <= RaceManager.instance.maxLaps)
+      //         {
+      //            UIManager.instance.currentLapText.text = RaceManager.instance.currentLap.ToString();
+      //         }
+
+      //      }
+      //   }
+      //}
       if (other.tag == "Checkpoint")
       {
          currentCheckPoint = other.GetComponent<Checkpoint>().checkPointNum;
-         //Debug.Log("Current checkpoint = " + currentCheckPoint);
+         Debug.Log("Current checkpoint = " + currentCheckPoint);
+         Debug.Log("nextCheckpointNum checkpoint num = " + RaceManager.instance.nextCheckpointNumber);
 
-         if (currentCheckPoint == nextCheckpointNum)
+         if (currentCheckPoint == RaceManager.instance.nextCheckpointNumber)
          {
-            nextCheckpointNum++;
+            RaceManager.instance.nextCheckpointNumber++;
 
-            if (nextCheckpointNum == RaceManager.instance.totalcheckPoints)
+            if (RaceManager.instance.nextCheckpointNumber == RaceManager.instance.totalcheckPoints)
             {
-               nextCheckpointNum = 0;
+               RaceManager.instance.nextCheckpointNumber = 0;
                RaceManager.instance.currentLap++;
 
                if (RaceManager.instance.currentLap <= RaceManager.instance.maxLaps)
                {
                   UIManager.instance.currentLapText.text = RaceManager.instance.currentLap.ToString();
                }
-               
-               //Debug.Log("Current Lap = " + RaceManager.instance.currentLap);
+
             }
          }
-
-
-         //Debug.Log("Current checkpoint = " + currentCheckPoint);
       }
+
    }
 
 }
