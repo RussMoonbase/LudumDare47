@@ -129,7 +129,8 @@ public class CarController : MonoBehaviour
       carBodyRigidbody.detectCollisions = false;
       carBodyModel.SetActive(false);
       carSoundManager.PlayPastSelfHitEffect();
-      destructibleBody.SetActive(true);
+      //destructibleBody.SetActive(true);
+      Instantiate(destructibleBody, carBodyModel.transform.position, Quaternion.identity);
       StartCoroutine(BeginRestartRoutine());
    }
 
@@ -138,7 +139,7 @@ public class CarController : MonoBehaviour
       carSoundManager.ResetToOrigialHitEffect();
       carBodyRigidbody.isKinematic = false;
       carBodyRigidbody.detectCollisions = true;
-      destructibleBody.SetActive(false);
+      //destructibleBody.SetActive(false);
       carBodyModel.SetActive(true);
    }
 
