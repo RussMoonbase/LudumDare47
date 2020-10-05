@@ -43,10 +43,14 @@ public class PastSelfForward : MonoBehaviour
          {
             this.transform.position = recording.carBodyTransform;
             this.transform.rotation = recording.carBodyRotation;
-            frontRightWheel.localRotation = recording.frontRightWheelRot;
-            frontLeftWheel.localRotation = recording.frontLeftWheelRot;
-            backRightWheel.localRotation = recording.backRightWheelRot;
-            backLeftWheel.localRotation = recording.backLeftWheelRot;
+            //frontRightWheel.localRotation = recording.frontRightWheelRot;
+            //frontLeftWheel.localRotation = recording.frontLeftWheelRot;
+            //backRightWheel.localRotation = recording.backRightWheelRot;
+            //backLeftWheel.localRotation = recording.backLeftWheelRot;
+            frontRightWheel.rotation = recording.frontRightWheelRot;
+            frontLeftWheel.rotation = recording.frontLeftWheelRot;
+            backRightWheel.rotation = recording.backRightWheelRot;
+            backLeftWheel.rotation = recording.backLeftWheelRot;
             yield return new WaitForFixedUpdate();
          }
       }
@@ -56,10 +60,14 @@ public class PastSelfForward : MonoBehaviour
          {
             this.transform.position = forwardRecordings[i].carBodyTransform;
             this.transform.rotation = forwardRecordings[i].carBodyRotation;
-            frontRightWheel.localRotation = forwardRecordings[i].frontRightWheelRot;
-            frontLeftWheel.localRotation = forwardRecordings[i].frontLeftWheelRot;
-            backRightWheel.localRotation = forwardRecordings[i].backRightWheelRot;
-            backLeftWheel.localRotation = forwardRecordings[i].backLeftWheelRot;
+            frontRightWheel.rotation = forwardRecordings[i].frontRightWheelRot;
+            frontLeftWheel.rotation = forwardRecordings[i].frontLeftWheelRot;
+            backRightWheel.rotation = forwardRecordings[i].backRightWheelRot;
+            backLeftWheel.rotation = forwardRecordings[i].backLeftWheelRot;
+            //frontRightWheel.localRotation = forwardRecordings[i].frontRightWheelRot;
+            //frontLeftWheel.localRotation = forwardRecordings[i].frontLeftWheelRot;
+            //backRightWheel.localRotation = forwardRecordings[i].backRightWheelRot;
+            //backLeftWheel.localRotation = forwardRecordings[i].backLeftWheelRot;
             yield return new WaitForFixedUpdate();
          }
       }
