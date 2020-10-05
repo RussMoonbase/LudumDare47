@@ -5,19 +5,19 @@ using UnityEngine;
 public class ChangeCenterOfMass : MonoBehaviour
 {
    public Vector3 theCenterOfMass;
-   public Rigidbody rB;
+   public Rigidbody rBody;
 
    // Start is called before the first frame update
    void Start()
    {
-      rB = GetComponent<Rigidbody>();
-      
+      rBody = GetComponent<Rigidbody>();
+      rBody.centerOfMass = theCenterOfMass;
    }
 
    // Update is called once per frame
    void Update()
    {
-      rB.centerOfMass = theCenterOfMass;
+      //rB.centerOfMass = theCenterOfMass;
    }
 
    private void OnDrawGizmos()

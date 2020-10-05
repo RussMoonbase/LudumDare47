@@ -8,6 +8,8 @@ public class CarController : MonoBehaviour
    public WheelCollider[] wheelCols;
    public Transform[] wheelMeshes;
    public BrakeLights brakeLights;
+   public GameObject carBodyModel;
+   public Rigidbody carBodyRigidbody;
 
    public float torque = 200f;
    [SerializeField] private float steeringAmount = 30f;
@@ -17,6 +19,9 @@ public class CarController : MonoBehaviour
    private float braking;
    private Vector3 wheelPostion;
    private Quaternion wheelRotation;
+
+   public bool wasHit = false;
+   public GameObject destructibleBody;
 
    private void Awake()
    {
@@ -47,6 +52,12 @@ public class CarController : MonoBehaviour
       }
 
       Drive(acceleration, steering, braking);
+
+      if (wasHit)
+      {
+         DestroyCar();
+      }
+
    }
 
    private void FixedUpdate()
@@ -80,9 +91,19 @@ public class CarController : MonoBehaviour
       }
    }
 
-   public float GetMotorTorque()
+   private void DestroyCar()
    {
-      float currentTorque = wheelCols[0].motorTorque;
-      return currentTorque;
+      carBodyRigidbody.isKinematic = true;
+      carBodyRigidbody.detectCollisions = false;
+      carBodyModel.SetActive(false);
+      destructibleBody.SetActive(true);
    }
+
+   //public float GetMotorTorque()
+   //{
+   //   float currentTorque = wheelCols[0].motorTorque;
+   //   return currentTorque;
+   //}
+
+
 }

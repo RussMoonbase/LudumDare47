@@ -24,19 +24,23 @@ public class DestroyPlayerCar : MonoBehaviour
    {
       if (other.tag == "Player")
       {
+         //if (canHitPlayer)
+         //{
+         //   Debug.Log("Hit Player");
+         //   Rigidbody rBody = other.GetComponent<Rigidbody>();
+
+         //   if (rBody)
+         //   {
+         //      Debug.Log("RigidBody Found");
+         //      rBody.AddForce((other.transform.up) * forcePower, ForceMode.Impulse);
+         //      rBody.AddForce((other.transform.right) * 30000f, ForceMode.Impulse);
+         //   }
+         //}
          if (canHitPlayer)
          {
-            Debug.Log("Hit Player");
-            Rigidbody rBody = other.GetComponent<Rigidbody>();
-
-            if (rBody)
-            {
-               Debug.Log("RigidBody Found");
-               rBody.AddForce((other.transform.up) * forcePower, ForceMode.Impulse);
-               rBody.AddForce((other.transform.right) * 30000f, ForceMode.Impulse);
-            }
+            CarController.instance.wasHit = true;
          }
-
+         
       }
    }
 
