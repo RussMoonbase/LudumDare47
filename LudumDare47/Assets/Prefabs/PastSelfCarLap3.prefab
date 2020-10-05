@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 1899991327683346090}
   - component: {fileID: 8713435770015262270}
   - component: {fileID: 618553501178342077}
+  - component: {fileID: 824841150442016641}
   m_Layer: 0
   m_Name: PastSelfCarLap3
   m_TagString: Untagged
@@ -126,6 +127,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 500
+  canHitPlayer: 0
+  waitTime: 0
+--- !u!114 &824841150442016641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294920186205536198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b3f9ab72988a6b4eb78cb471fb6b722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forcePower: 0
+  canHitPlayer: 0
+  waitTime: 2
 --- !u!1 &2180206377416157646
 GameObject:
   m_ObjectHideFlags: 0
