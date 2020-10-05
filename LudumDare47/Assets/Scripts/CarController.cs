@@ -55,6 +55,7 @@ public class CarController : MonoBehaviour
 
       if (wasHit)
       {
+         wasHit = false;
          DestroyCar();
       }
 
@@ -81,7 +82,12 @@ public class CarController : MonoBehaviour
             wheelCols[i].steerAngle = steer * steeringAmount;
          }
 
-         wheelCols[i].brakeTorque = brake * brakingAmount;
+         if ( i > 1)
+         {
+            wheelCols[i].brakeTorque = brake * brakingAmount;
+         }
+
+         
 
 
          wheelCols[i].GetWorldPose(out wheelPostion, out wheelRotation);
@@ -97,6 +103,21 @@ public class CarController : MonoBehaviour
       carBodyRigidbody.detectCollisions = false;
       carBodyModel.SetActive(false);
       destructibleBody.SetActive(true);
+      StartCoroutine(BeginRestartRoutine());
+   }
+
+   private void ResetCar()
+   {
+      carBodyRigidbody.isKinematic = false;
+      carBodyRigidbody.detectCollisions = true;
+      destructibleBody.SetActive(false);
+      carBodyModel.SetActive(true);
+   }
+
+   IEnumerator BeginRestartRoutine()
+   {
+      yield return new WaitForSeconds(5f);
+      ResetCar();
    }
 
    //public float GetMotorTorque()
