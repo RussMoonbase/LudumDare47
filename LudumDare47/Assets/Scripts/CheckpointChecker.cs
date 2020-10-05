@@ -36,7 +36,12 @@ public class CheckpointChecker : MonoBehaviour
             {
                nextCheckpointNum = 0;
                RaceManager.instance.currentLap++;
-               UIManager.instance.currentLapText.text = RaceManager.instance.currentLap.ToString();
+
+               if (RaceManager.instance.currentLap <= RaceManager.instance.maxLaps)
+               {
+                  UIManager.instance.currentLapText.text = RaceManager.instance.currentLap.ToString();
+               }
+               
                //Debug.Log("Current Lap = " + RaceManager.instance.currentLap);
             }
          }
